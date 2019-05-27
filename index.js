@@ -2,7 +2,7 @@ function allTrim(data, isTrimKey) {
   if (typeof data === 'string') {
     data = data.trim()
   } else if (data instanceof Array) {
-    data = data.map(item => allTrim(item))
+    data = data.map(item => allTrim(item, isTrimKey))
   } else if (data instanceof Object) {
     for (let key in data) {
       if (isTrimKey && typeof key === 'string' && key !== key.trim()) {
@@ -13,9 +13,9 @@ function allTrim(data, isTrimKey) {
       if (typeof data[key] === 'string') {
         data[key] = data[key].trim()
       } else if (data instanceof Array) {
-        data[key] = data[key].map(item => allTrim(item))
+        data[key] = data[key].map(item => allTrim(item, isTrimKey))
       } else if (data[key] instanceof Object) {
-        data[key] = allTrim(data[key])
+        data[key] = allTrim(data[key], isTrimKey)
       }
     }
   }

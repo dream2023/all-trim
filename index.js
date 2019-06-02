@@ -1,9 +1,9 @@
 function allTrim(data, isTrimKey) {
   if (typeof data === 'string') {
     data = data.trim()
-  } else if (data instanceof Array) {
+  } else if (Array.isArray(data)) {
     data = data.map(item => allTrim(item, isTrimKey))
-  } else if (data instanceof Object && data !== null) {
+  } else if (Object.prototype.toString.call(data) === '[object Object]') {
     for (let key in data) {
       if (isTrimKey && typeof key === 'string' && key !== key.trim()) {
         data[key.trim()] = data[key]
@@ -12,9 +12,9 @@ function allTrim(data, isTrimKey) {
       }
       if (typeof data[key] === 'string') {
         data[key] = data[key].trim()
-      } else if (data instanceof Array) {
+      } else if (Array.isArray(data)) {
         data[key] = data[key].map(item => allTrim(item, isTrimKey))
-      } else if (data[key] instanceof Object && data !== null) {
+      } else if (Object.prototype.toString.call(data) === '[object Object]') {
         data[key] = allTrim(data[key], isTrimKey)
       }
     }

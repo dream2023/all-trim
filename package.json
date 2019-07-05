@@ -29,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/dream2023/all-trim/issues"
   },
-  "homepage": "https://github.com/dream2023/all-trim#readme"
+  "homepage": "https://github.com/dream2023/all-trim#readme",
+  "devDependencies": {
+    "deep-eql": "^4.0.0"
+  }
 }

@@ -1,24 +1,25 @@
 function allTrim(data, isTrimKey) {
-  if (typeof data === 'string') {
+  const type = Object.prototype.toString.call(data)
+  if (type === '[object String]') {
+    // 普通字符串
     data = data.trim()
-  } else if (Array.isArray(data)) {
+  } else if (type === '[object Array]') {
+    // 数组
     data = data.map(item => allTrim(item, isTrimKey))
-  } else if (Object.prototype.toString.call(data) === '[object Object]') {
+  } else if (type === '[object Object]') {
+    // 对象
     for (let key in data) {
+      // 是否去除 key 的空格
       if (isTrimKey && typeof key === 'string' && key !== key.trim()) {
         data[key.trim()] = data[key]
         delete data[key]
         key = key.trim()
       }
-      if (typeof data[key] === 'string') {
-        data[key] = data[key].trim()
-      } else if (Array.isArray(data)) {
-        data[key] = data[key].map(item => allTrim(item, isTrimKey))
-      } else if (Object.prototype.toString.call(data) === '[object Object]') {
-        data[key] = allTrim(data[key], isTrimKey)
-      }
+      // 递归
+      data[key] = allTrim(data[key], isTrimKey)
     }
   }
+
   return data
 }
 

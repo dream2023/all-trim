@@ -1,6 +1,6 @@
 {
   "name": "all-trim",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "支持字符串、数组、对象、嵌套数组等类型的去除空格",
   "main": "index.js",
   "scripts": {},
